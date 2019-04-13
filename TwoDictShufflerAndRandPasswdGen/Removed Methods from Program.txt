@@ -1,0 +1,67 @@
+void CheckIfPasswdMeetsRules(string final_password_str, string[] male_names_array, string[] female_names_array, int max_password_len)
+        {
+            // PRVI ZNAK!
+            if (char.IsDigit(final_password_str[0]) == true)
+            {
+                Console.WriteLine("Word " + final_password_str + " is not by the rules!" + "First char is " + final_password_str[0]);
+                getRandomAndShuffledPassword(male_names_array, female_names_array, max_password_len);
+            }
+
+            if (final_password_str[0] == '_')
+            {
+                Console.WriteLine("Word " + final_password_str + " is not by the rules!" + "First char is " + final_password_str[0]);
+                getRandomAndShuffledPassword(male_names_array, female_names_array, max_password_len);
+            }
+
+            if (final_password_str[0] == '-')
+            {
+                Console.WriteLine("Word " + final_password_str + " is not by the rules!" + "First char is " + final_password_str[0]);
+                getRandomAndShuffledPassword(male_names_array, female_names_array, max_password_len);
+            }
+
+            // ZADNJI ZNAK
+            if (char.IsDigit(final_password_str[final_password_str.Length - 1]) == true)
+            {
+                Console.WriteLine("Word " + final_password_str + " is not by the rules!" + "Last char is " + final_password_str[final_password_str.Length - 1]);
+                getRandomAndShuffledPassword(male_names_array, female_names_array, max_password_len);
+            }
+
+            if (final_password_str[final_password_str.Length - 1] == '_')
+            {
+                Console.WriteLine("Word " + final_password_str + " is not by the rules!" + "Last char is " + final_password_str[final_password_str.Length - 1]);
+                getRandomAndShuffledPassword(male_names_array, female_names_array, max_password_len);
+            }
+
+            if (final_password_str[final_password_str.Length - 1] == '-')
+            {
+                Console.WriteLine("Word " + final_password_str + " is not by the rules!" + "Last char is " + final_password_str[final_password_str.Length - 1]);
+                getRandomAndShuffledPassword(male_names_array, female_names_array, max_password_len);
+            }
+
+            // check rule that every password should have _ or -
+            if (final_password_str.Contains("_") == false && final_password_str.Contains("-") == false)
+            {
+                Console.WriteLine("Word " + final_password_str + " is not by the rules! Mandatory char _ or - was not found");
+                getRandomAndShuffledPassword(male_names_array, female_names_array, max_password_len);
+            }
+
+            // check rule if only chars are in the password
+            if (toolset.ContainsAlphaNumeric(final_password_str) == false)
+            {
+                Console.WriteLine("Word " + final_password_str + " is not by the rules!" + "JUST ALL CHARS, NO NUMBERS OR SPEC. CHARS!");
+                getRandomAndShuffledPassword(male_names_array, female_names_array, max_password_len);
+            }
+        }
+
+
+        List<string> random_names_from_list(String[] nameList)
+        {
+            int OnceOrTwice = random.Next(0, 2);
+            List<String> names = new List<String>();
+            for (int index=0; index <= OnceOrTwice; index++) {
+                names.Add(nameList[random.Next(nameList.Length)]);
+            }
+
+            return names;
+
+        }
