@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TwoDictShufflerAndRandPasswdGen
 {
-    class toolset
+    class ToolSet
     {
 
         public string[] readFileNames(string fileName)
@@ -131,6 +131,62 @@ namespace TwoDictShufflerAndRandPasswdGen
                 }
             }
             return false;
+        }
+
+        public bool CheckIfPasswdMeetsRules(string final_password_str)
+        {
+            // PRVI ZNAK!
+            if (char.IsDigit(final_password_str[0]))
+            {
+                //Console.WriteLine("Word " + final_password_str + " is not by the rules!" + "First char is " + final_password_str[0]);
+                return false;
+            }
+
+            if (final_password_str.StartsWith("_"))
+            {
+                //Console.WriteLine("Word " + final_password_str + " is not by the rules!" + "First char is " + final_password_str[0]);
+                return false;
+            }
+
+            if (final_password_str.StartsWith("-"))
+            {
+                //Console.WriteLine("Word " + final_password_str + " is not by the rules!" + "First char is " + final_password_str[0]);
+                return false;
+            }
+
+            // ZADNJI ZNAK
+            if (char.IsDigit(final_password_str.Last()))
+            {
+                //Console.WriteLine("Word " + final_password_str + " is not by the rules!" + "Last char is " + final_password_str[final_password_str.Length - 1]);
+                return false;
+            }
+
+            if (final_password_str.EndsWith("_"))
+            {
+                //Console.WriteLine("Word " + final_password_str + " is not by the rules!" + "Last char is " + final_password_str[final_password_str.Length - 1]);
+                return false;
+            }
+
+            if (final_password_str.EndsWith("-"))
+            {
+                //Console.WriteLine("Word " + final_password_str + " is not by the rules!" + "Last char is " + final_password_str[final_password_str.Length - 1]);
+                return false;
+            }
+
+            // check rule that every password should have _ or -
+            if (!final_password_str.Contains("_") && !final_password_str.Contains("-"))
+            {
+                //Console.WriteLine("Word " + final_password_str + " is not by the rules! Mandatory char _ or - was not found");
+                return false;
+            }
+
+            // check rule if only chars are in the password
+            if (!ContainsAlphaNumeric(final_password_str))
+            {
+                //Console.WriteLine("Word " + final_password_str + " is not by the rules!" + "JUST ALL CHARS, NO NUMBERS OR SPEC. CHARS!");
+                return false;
+            }
+            return true;
         }
 
     }
