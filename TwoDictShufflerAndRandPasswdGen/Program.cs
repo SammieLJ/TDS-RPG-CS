@@ -29,7 +29,7 @@ namespace TwoDictShufflerAndRandPasswdGen
             toolset.two_dictionary_passwd_gen_banner();
 
             //check if number of parameters are ok
-            Console.WriteLine("List of arguments: {0}", args[0]); //String.Join("", list.ToArray())
+            Console.WriteLine("List of arguments: {0}", args[0]);
             Console.WriteLine("No of arguments: " + args.Length);
             
             // if only parameter is missing, then exit program
@@ -70,7 +70,6 @@ namespace TwoDictShufflerAndRandPasswdGen
 
             List<string> gendNamesList = new List<string>();
             for (int i = 0; i < amountPwdsToGen; i++) {
-                //gendNamesList.Add(getRandomAndShuffledPassword(male_names_array, female_names_array, max_password_len));
                 gendNamesList.Add(PickAndCheckPassword(male_names_array, female_names_array, max_password_len));
             }
             
@@ -100,7 +99,7 @@ namespace TwoDictShufflerAndRandPasswdGen
 
         internal static string PickAndCheckPassword(string[] male_names_array, string[] female_names_array, int max_password_len)
         {
-            var final_password_str = String.Empty;//getRandomAndShuffledPassword(male_names_array, female_names_array, max_password_len);
+            var final_password_str = String.Empty;
 
             bool checkPasswd = false;
             while (!checkPasswd)
@@ -132,10 +131,6 @@ namespace TwoDictShufflerAndRandPasswdGen
             var numbersAndSpecialChars = String.Empty;
 
             if (noNumbers > 0) {
-                /*for (int x = 0; x < noNumbers; x++) {
-                    //numbersAndSpecialChars += random.choice(chars);
-                    numbersAndSpecialChars += toolset.GetRandomCharacters(numeric_chars);
-                }*/
                 numbersAndSpecialChars = toolset.GetRandomCharacters(numeric_chars, noNumbers, random);
             }
 
@@ -155,21 +150,11 @@ namespace TwoDictShufflerAndRandPasswdGen
 
             toolset.Shuffle(final_password, random);
 
-            // Console.WriteLine(("Finall password shuffled: ")
             // Console.WriteLine((final_password)
             var final_password_str = String.Join("", final_password.ToArray());
-
-
-            // aditional checkups, check for two rules (starts and ends with char)
-            //if (toolset.CheckIfPasswdMeetsRules(final_password_str) == false)
-            //{
-            //    getRandomAndShuffledPassword(male_names_array, female_names_array, max_password_len);
-            //}
-
-            //CheckIfPasswdMeetsRules(final_password_str, male_names_array, female_names_array, max_password_len);
-
-            // Console.WriteLine(("Password : " + final_password_str)
+            
             //return CheckIfPasswdMeetsRules(final_password_str) ? final_password_str : getRandomAndShuffledPassword(male_names_array, female_names_array, max_password_len);
+            // Console.WriteLine(("Password : " + final_password_str)
             return final_password_str;
         }
 
